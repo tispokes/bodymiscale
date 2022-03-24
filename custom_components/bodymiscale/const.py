@@ -24,6 +24,7 @@ ATTR_BMR = "basal_metabolism"
 ATTR_VISCERAL = "visceral_fat"
 ATTR_IDEAL = "ideal"
 ATTR_BMILABEL = "bmi_label"
+ATTR_LAST_UPDATE = "last_updated"
 
 # Constants for Miscale 2
 READING_IMPEDANCE = "impedance"
