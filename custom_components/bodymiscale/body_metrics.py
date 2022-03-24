@@ -18,7 +18,7 @@ def _check_value_constraints(value: float, minimum: float, maximum: float) -> fl
 class BodyMetrics:
     """Body metrics implementation."""
 
-    def __init__(self, weight: float, height: int, age: int, gender: Gender):
+    def __init__(self, weight: float, height: int, age: int, gender: Gender, last_updated: datetime):
         # Check for potential out of boundaries
         if height > 220:
             raise Exception("Height is too high (limit: >220cm)")
@@ -33,6 +33,7 @@ class BodyMetrics:
         self._height = height
         self._age = age
         self._gender = gender
+        self._last_updated = last_updated
 
     @property
     def weight(self) -> float:
@@ -53,6 +54,11 @@ class BodyMetrics:
     def gender(self) -> Gender:
         """Get gender."""
         return self._gender
+
+    @property
+    def last_updated(self) -> datetime:
+        """Get last_updated."""
+        return self._last_updated
 
     @cached_property
     def bmi(self) -> float:
@@ -146,13 +152,13 @@ class BodyMetricsImpedance(BodyMetrics):
     """body metrics with impedance implementation."""
 
     def __init__(  # pylint: disable=too-many-arguments
-        self, weight: float, height: int, age: int, gender: Gender, impedance: int
+        self, weight: float, height: int, age: int, gender: Gender, last_updated: datetime, impedance: int
     ):
-        super().__init__(weight, height, age, gender)
+        super().__init__(weight, height, age, gender, last_updated)
         if impedance > 3000:
             raise Exception("Impedance is too high (limit >3000ohm)")
         self._impedance = impedance
-        self._scale = BodyScale(age, height, gender, weight)
+        self._scale = BodyScale(age, height, gender, weight, last_updated: datetime)
 
     @property
     def scale(self) -> BodyScale:
