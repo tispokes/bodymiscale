@@ -7,11 +7,12 @@ from custom_components.bodymiscale.models import Gender
 class BodyScale:
     """body scale implementation."""
 
-    def __init__(self, age: int, height: int, gender: Gender, weight: float):
+    def __init__(self, age: int, height: int, gender: Gender, weight: float, last_updated: datetime):
         self._age = age
         self._height = height
         self._gender = gender
         self._weight = weight
+        self._last_updated = last_updated
 
     @property
     def bmi(self) -> list[float]:
